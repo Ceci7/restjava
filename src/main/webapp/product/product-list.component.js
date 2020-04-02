@@ -17,8 +17,8 @@
         self.getProducts = () => {
 
             facturaServices.getProducts()
-                .then(function (products) {
-                    self.products = products
+                .then(function (response) {
+                    self.products = response.data;
                 });
 
         }

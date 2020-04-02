@@ -1,5 +1,6 @@
 package com.arquitecturajava.aplicacion.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,17 +39,22 @@ public class FacturaRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProducts() {
 		List<Product> products = service.getProducts();
-
-		List<ProductDTO> collect = products.stream().map(x -> {
-			ProductDTO obj = new ProductDTO();
+		
+		ProductDTO obj = new ProductDTO();
+		
+		List<ProductDTO> collect = new ArrayList<ProductDTO>();
+		for(Product x:products) {
+			obj = new ProductDTO();
 			obj.setId(x.getId());
 			obj.setDescription(x.getDescription());
 			obj.setPurchasePrice(x.getPurchasePrice());
 			obj.setRetailPrice(x.getRetailPrice());
 			obj.setSalePrice(x.getSalePrice());
 			obj.setStock(x.getStock());
-			return obj;
-		}).collect(Collectors.toList());
+			collect.add(obj);
+		}
+
+		
 
 		return Response.ok(collect).build();
 	}

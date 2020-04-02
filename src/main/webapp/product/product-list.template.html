@@ -1,31 +1,57 @@
-<div>     
+<div>
     <form ng-submit="$ctrl.saveProduct()">
 
         <div>
             <label for="name">Nombre</label>
-            <input id="name" type="text" ng-model="$ctrl.product.name"/>
+            <input id="name" type="text" ng-model="$ctrl.product.name" />
         </div>
         <div>
             <label for="stock">Stock</label>
-            <input id="stock" type="number" ng-model="$ctrl.product.stock"/>
+            <input id="stock" type="number" ng-model="$ctrl.product.stock" />
         </div>
         <div>
             <label for="description">Description</label>
-            <input id="description" type="text" ng-model="$ctrl.product.description"/>
+            <input id="description" type="text" ng-model="$ctrl.product.description" />
         </div>
         <div>
             <label for="purchasePrice">Precio de Compra</label>
-            <input id="purchasePrice" type="number" ng-model="$ctrl.product.purchasePrice"/>
+            <input id="purchasePrice" type="number" ng-model="$ctrl.product.purchasePrice" />
         </div>
         <div>
             <label for="salePrice">Precio de Venta</label>
-            <input id="salePrice" type="number" ng-model="$ctrl.product.salePrice"/>
+            <input id="salePrice" type="number" ng-model="$ctrl.product.salePrice" />
         </div>
         <div>
             <label for="retailPrice">Precio de Venta al Publico</label>
-            <input id="retailPrice" type="number" ng-model="$ctrl.product.retailPrice"/>
+            <input id="retailPrice" type="number" ng-model="$ctrl.product.retailPrice" />
         </div>
-        <input type="submit"/>
+        <input type="submit" />
     </form>
-    <div ng-repeat="product in $ctrl.products"></div>
+
+    <br>
+    
+    <table>
+
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Precio de compra</th>
+                <th>Precio de venta</th>
+                <th>Precio publico</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="x in $ctrl.products">
+                <td>{{ x.id }}</td>
+                <td>{{ x.name }}</td>
+                <td>{{ x.purchasePrice | currency }}</td>
+                <td>{{ x.salePrice | currency }}</td>
+                <td>{{ x.retailPrice | currency }}</td>                
+                <td>{{ x.stock | currency }}</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>
