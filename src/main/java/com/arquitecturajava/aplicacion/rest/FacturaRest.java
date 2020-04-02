@@ -14,6 +14,8 @@ import javax.ws.rs.core.Response;
 import com.arquitecturajava.aplicacion.bo.Customer;
 import com.arquitecturajava.aplicacion.bo.Factura;
 import com.arquitecturajava.aplicacion.bo.Product;
+import com.arquitecturajava.aplicacion.dto.CustomerDTO;
+import com.arquitecturajava.aplicacion.dto.FacturaDTO;
 import com.arquitecturajava.aplicacion.dto.ProductDTO;
 import com.arquitecturajava.aplicacion.servicios.FacturaService;
 import com.arquitecturajava.aplicacion.servicios.impl.FacturaServiceImpl;
@@ -39,11 +41,11 @@ public class FacturaRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProducts() {
 		List<Product> products = service.getProducts();
-		
+
 		ProductDTO obj = new ProductDTO();
-		
+
 		List<ProductDTO> collect = new ArrayList<ProductDTO>();
-		for(Product x:products) {
+		for (Product x : products) {
 			obj = new ProductDTO();
 			obj.setId(x.getId());
 			obj.setDescription(x.getDescription());
@@ -54,8 +56,6 @@ public class FacturaRest {
 			obj.setName(x.getName());
 			collect.add(obj);
 		}
-
-		
 
 		return Response.ok(collect).build();
 	}
@@ -74,7 +74,24 @@ public class FacturaRest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCustomers() {
-		return Response.ok(service.getCustomers()).build();
+		List<Customer> customers = service.getCustomers();
+
+		CustomerDTO obj = new CustomerDTO();
+
+		List<CustomerDTO> collect = new ArrayList<CustomerDTO>();
+		for (Customer x : customers) {
+			obj = new CustomerDTO();
+			obj.setId(x.getId());
+			obj.setFirstName(x.getFirstName());
+			obj.setLastName(x.getLastName());
+			obj.setEmail(x.getEmail());
+			obj.setAddress(x.getAddress());
+			obj.setPhone(x.getPhone());
+			obj.setTaxId(x.getTaxId());
+			collect.add(obj);
+		}
+
+		return Response.ok(collect).build();
 	}
 
 	@Path("/customer")
@@ -91,7 +108,23 @@ public class FacturaRest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getFacturas() {
-		return Response.ok(service.getFacturas()).build();
+		List<Factura> facturas = service.getFacturas();
+
+		FacturaDTO obj = new FacturaDTO();
+
+		List<FacturaDTO> collect = new ArrayList<FacturaDTO>();
+		for (Factura x : facturas) {
+			obj = new FacturaDTO();
+			obj.setId(x.getId());
+			obj.setDescription(x.getDescription());
+			obj.setNumber(x.getNumber());
+			obj.setSubtotal(x.getSubtotal());
+			obj.setTotal(x.getTotal());
+			obj.setDate(x.getDate());
+			collect.add(obj);
+		}
+
+		return Response.ok(collect).build();
 	}
 
 	@Path("/factura")
