@@ -51,6 +51,7 @@ public class FacturaRest {
 			obj.setRetailPrice(x.getRetailPrice());
 			obj.setSalePrice(x.getSalePrice());
 			obj.setStock(x.getStock());
+			obj.setName(x.getName());
 			collect.add(obj);
 		}
 
