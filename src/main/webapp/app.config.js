@@ -7,10 +7,8 @@ function RouteConfig($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix("!");
 
     $routeProvider
-        .when("/product-list", { template: "<product-list></product-list>" })
-        .when("/product", { template: "<product></product>" })
-        .when("/customer-list", { template: "<customer-list></customer-list>" })
-        .when("/customer", { template: "<customer></customer>" })
+        .when("/product-list", { template: "<product-list></product-list>" })      
+        .when("/customer-list", { template: "<customer-list></customer-list>" })       
         .otherwise("/product-list");
 
 }

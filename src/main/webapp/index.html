@@ -14,19 +14,22 @@
   <nav class="navbar navbar-expand-sm bg-light">
     <div class="navbar-brand" href="#">Facturas App</div>
     <!-- Links -->
-    <ul class="navbar-nav">
-
-      
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" ng-href="#!product-list">Productos <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" ng-href="#!customer-list">Clientes</a>
+      </li> 
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Facturas</a>
+      </li>
     </ul>
   
   </nav>
 
   <div class="container">
-
-    <div class="row">
-     
-      <product-list></product-list>
-    </div>
+    <div ng-view></div>   
   </div>
 
   <script type="text/javascript" src="libs/jquery.js"></script>
@@ -39,6 +42,7 @@
   <script type="text/javascript" src="app.config.js"></script>
   <script type="text/javascript" src="services.js"></script>
   <script type="text/javascript" src="product/product-list.component.js"></script>
+  <script type="text/javascript" src="customer/customer-list.component.js"></script>
 
 </body>
 
