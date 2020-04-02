@@ -25,7 +25,7 @@
 		this.saveCustomer = (customer) => {
             return $http.post('rest/api/customer',customer);
 		}
-		
+			
 		this.saveFactura = (factura) => {
             return $http.post('rest/api/factura',factura);
         }

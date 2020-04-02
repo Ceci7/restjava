@@ -3,6 +3,7 @@ package com.arquitecturajava.aplicacion.bo;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,7 +37,12 @@ public class Product {
 	@Column(name = "retail_price")
 	private BigDecimal retailPrice;
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+	 @OneToMany(
+		        mappedBy = "product",
+		        cascade = CascadeType.ALL,
+		        orphanRemoval = true,
+		        fetch = FetchType.LAZY
+		    )
 	private List<Detail> details;
 
 	public Integer getId() {
@@ -102,5 +108,13 @@ public class Product {
 	public void setDetails(List<Detail> details) {
 		this.details = details;
 	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", stock=" + stock + ", description=" + description
+				+ ", purchasePrice=" + purchasePrice + ", salePrice=" + salePrice + ", retailPrice=" + retailPrice
+				+ "]";
+	}
+		
 
 }

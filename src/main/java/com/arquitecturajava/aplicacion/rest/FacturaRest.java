@@ -1,5 +1,8 @@
 package com.arquitecturajava.aplicacion.rest;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -10,6 +13,7 @@ import javax.ws.rs.core.Response;
 import com.arquitecturajava.aplicacion.bo.Customer;
 import com.arquitecturajava.aplicacion.bo.Factura;
 import com.arquitecturajava.aplicacion.bo.Product;
+import com.arquitecturajava.aplicacion.dto.ProductDTO;
 import com.arquitecturajava.aplicacion.servicios.FacturaService;
 import com.arquitecturajava.aplicacion.servicios.impl.FacturaServiceImpl;
 
@@ -33,7 +37,20 @@ public class FacturaRest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getProducts() {
-		return Response.ok(service.getProducts()).build();
+		List<Product> products = service.getProducts();
+
+		List<ProductDTO> collect = products.stream().map(x -> {
+			ProductDTO obj = new ProductDTO();
+			obj.setId(x.getId());
+			obj.setDescription(x.getDescription());
+			obj.setPurchasePrice(x.getPurchasePrice());
+			obj.setRetailPrice(x.getRetailPrice());
+			obj.setSalePrice(x.getSalePrice());
+			obj.setStock(x.getStock());
+			return obj;
+		}).collect(Collectors.toList());
+
+		return Response.ok(collect).build();
 	}
 
 	@Path("/product")

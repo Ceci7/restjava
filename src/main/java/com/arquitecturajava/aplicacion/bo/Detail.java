@@ -3,6 +3,7 @@ package com.arquitecturajava.aplicacion.bo;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +26,8 @@ public class Detail {
 	@JoinColumn(name = "factura")
 	private Factura factura;
 	
-	@ManyToOne
-	@JoinColumn(name = "product")
+	@ManyToOne(fetch = FetchType.LAZY)
+	
 	private Product product;
 
 	public Integer getId() {
