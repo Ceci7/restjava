@@ -19,15 +19,15 @@
 		}
 		
 		this.saveProduct = (product) => {
-            return $http.put('rest/api/product',product);
+            return $http.post('rest/api/product',product);
 		}
 		
 		this.saveCustomer = (customer) => {
-            return $http.put('rest/api/customer',customer);
+            return $http.post('rest/api/customer',customer);
 		}
 		
 		this.saveFactura = (factura) => {
-            return $http.put('rest/api/factura',factura);
+            return $http.post('rest/api/factura',factura);
         }
 	}
 }(window.angular));

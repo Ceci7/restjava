@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,28 +16,27 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "product")
 public class Product {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;	
-	
+	private Integer id;
+
 	private String name;
-	
+
 	private Integer stock;
-	
+
 	private String description;
-	
-	@Column(name="purchase_price")
+
+	@Column(name = "purchase_price")
 	private BigDecimal purchasePrice;
-	
-	@Column(name="sale_price")
+
+	@Column(name = "sale_price")
 	private BigDecimal salePrice;
-	
-	@Column(name="retail_price")
+
+	@Column(name = "retail_price")
 	private BigDecimal retailPrice;
-	
-	@OneToMany(targetEntity = Product.class)
-	@JoinColumn(name = "product")	
+
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
 	private List<Detail> details;
 
 	public Integer getId() {
@@ -101,6 +101,6 @@ public class Product {
 
 	public void setDetails(List<Detail> details) {
 		this.details = details;
-	}	
+	}
 
 }

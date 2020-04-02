@@ -10,10 +10,30 @@
     function Controller(facturaServices, $routeParams) {
         var self = this;
         self.title = "Products";
-        facturaServices.getProducts()
-            .then(function (products) {
-                self.products = products
-            });
+        self.product = {};
+
+
+
+        self.getProducts = () => {
+
+            facturaServices.getProducts()
+                .then(function (products) {
+                    self.products = products
+                });
+
+        }
+
+        self.getProducts();
+
+
+        self.saveProduct = () => {
+            facturaServices
+                .saveProduct(self.product)
+                .then(function () {
+                    self.product = {};
+                    self.getProducts();
+                });
+        }
 
     };
 }(window.angular));
