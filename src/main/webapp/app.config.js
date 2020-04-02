@@ -5,9 +5,12 @@ RouteConfig.$inject = ["$locationProvider", "$routeProvider"]
 function RouteConfig($locationProvider, $routeProvider) {
 
     $locationProvider.hashPrefix("!");
+
     $routeProvider        
-        .when("/products", { template: "<products></products>" })
-        .when("/customers", { template: "<customers></customers>" })
-        .otherwise("/products");
+        .when("/product-list", { template: "<product-list></product-list>" })
+        .when("/product", { template: "<product></product>" })
+        .when("/customer-list", { template: "<customer-list></customer-list>" })
+        .when("/customer", { template: "<customer></customer>" })
+        .otherwise("/product-list");
 
 }
